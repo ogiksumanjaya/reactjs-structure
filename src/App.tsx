@@ -1,6 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
-import logo from './logo.svg'
-import './App.css'
 import { useAppDispatch, useAppSelector } from 'utils/customHooks/reduxHook'
 import { increment } from 'redux/counter/counterSlice'
 
@@ -13,12 +12,8 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>{count}</p>
-        <button onClick={handleIncres}>Increment</button>
-      </header>
+    <div className="sm:container sm:mx-auto bg-bubble-gum">
+      <h1 className="text-3xl font-bold underline text-white">Test Styling</h1>
     </div>
   )
 }
