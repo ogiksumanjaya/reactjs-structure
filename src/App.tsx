@@ -2,6 +2,7 @@
 import React from 'react'
 import { useAppDispatch, useAppSelector } from 'utils/customHooks/reduxHook'
 import { increment } from 'redux/counter/counterSlice'
+import LibraryComponent from 'pages/LibraryComponent'
 
 function App() {
   const count = useAppSelector((state) => state.counter.value)
@@ -12,8 +13,8 @@ function App() {
   }
 
   return (
-    <div className="sm:container sm:mx-auto bg-bubble-gum">
-      <h1 className="text-3xl font-bold underline text-white">Test Styling</h1>
+    <div>
+      <LibraryComponent />
     </div>
   )
 }

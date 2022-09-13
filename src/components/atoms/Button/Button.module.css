@@ -1,0 +1,16 @@
+.buttonStyle {
+    @apply  rounded-lg  h-fit self-center flex flex-row gap-3
+}
+.buttonPrimary {
+    @apply bg-slate-600 text-white
+    
+}
+.buttonPrimaryDisabled {
+    @apply bg-slate-200 text-white
+}
+.buttonOutline {
+    @apply bg-transparent text-slate-600 border-solid border-2 border-slate-600 
+}
+.buttonOutlineDisabled {
+    @apply bg-transparent text-slate-200 border-solid border-2 border-slate-200 
+}
