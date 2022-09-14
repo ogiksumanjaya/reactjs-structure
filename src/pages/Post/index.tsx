@@ -1,5 +1,5 @@
 import { fetchAllPost } from 'redux/post/actions'
-import { RootStateType } from 'store'
+import { RootStateType } from 'redux/store'
 import { useAppDispatch, useAppSelector } from 'utils/customHooks/reduxHook'
 
 const Post = () => {

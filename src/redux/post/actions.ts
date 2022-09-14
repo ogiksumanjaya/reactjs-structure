@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { callErrorMsg } from 'utils/helpers/errorMsg'
-import { request } from '../../utils/service'
+import { request } from '../../utils/helpers/service'
 import { ApiEnum } from './interfaces'
 
 export const fetchAllPost = createAsyncThunk(
