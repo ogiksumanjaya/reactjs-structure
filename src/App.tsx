@@ -1,21 +1,23 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react'
-import { useAppDispatch, useAppSelector } from 'utils/customHooks/reduxHook'
-import { increment } from 'redux/counter/counterSlice'
-import LibraryComponent from 'pages/LibraryComponent'
+import { lazy, Suspense } from 'react'
+import { homeRoute, libraryComponentRoute, postRoute } from 'constant/route'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-function App() {
-  const count = useAppSelector((state) => state.counter.value)
-  const dispatch = useAppDispatch()
+const App = () => {
+  const Homepage = lazy(() => import('./pages/Homepage'))
+  const LibraryComponent = lazy(() => import('./pages/LibraryComponent'))
+  const Post = lazy(() => import('./pages/Post'))
 
-  const handleIncres = () => {
-    dispatch(increment())
-  }
-
+  const renderLoader = () => <p>Loading</p>
   return (
-    <div>
-      <LibraryComponent />
-    </div>
+    <BrowserRouter>
+      <Suspense fallback={renderLoader()}>
+        <Routes>
+          <Route path={homeRoute} element={<Homepage />} />
+          <Route path={libraryComponentRoute} element={<LibraryComponent />} />
+          <Route path={postRoute} element={<Post />} />
+        </Routes>
+      </Suspense>
+    </BrowserRouter>
   )
 }
 
