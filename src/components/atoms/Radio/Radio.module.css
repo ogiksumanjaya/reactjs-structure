@@ -1,4 +1,4 @@
-.spanCheckbox {
+.spanRadio {
     @apply 
     absolute 
     w-4 
@@ -8,8 +8,9 @@
     duration-150 
     border-2 
     border-solid 
-    rounded 
+    rounded-xl
     top-[35%]
+    bg-transparent
     
 }
 
@@ -20,30 +21,26 @@
     @apply border-gray-200 cursor-default
 }
 
-.spanCheckbox_after {
+.spanRadio_after {
     @apply 
-    after:top-0 
     after:absolute 
-    after:w-[5px]
-    after:h-[10px]
-    after:border-solid 
-    after:border-white
+    after:w-[8px]
+    after:h-[8px]
     after:rotate-45 
-    after:left-1 
-    after:border-r-[2.5px] 
-    after:border-b-[2.5px]
-    after:rounded-sm 
+    after:top-[2px]
+    after:left-[2px] 
+    after:rounded-lg
     after:content-['']
 }
 
-.spanCheckbox_after_DisabledTrue {
-    @apply after:cursor-default
+.spanRadio_after_DisabledTrue{
+    @apply  after:bg-gray-200 cursor-default
 }
-.spanCheckbox_after_DisabledFalse {
-    @apply after:cursor-pointer
+.spanRadio_after_DisabledFalse{
+    @apply  after:bg-gray-600 cursor-pointer
 }
 
-.spanCheckbox_label {
+.spanRadio_label {
     @apply
     text-sm
     inline-block
