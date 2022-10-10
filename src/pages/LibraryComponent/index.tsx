@@ -48,7 +48,7 @@ const LibraryComponent = () => (
 
     <h1 className="text-xl font-boldxs">Box</h1>
     <div className="flex gap-3 mb-5">
-      <Box direction="row" maxWidth={200} className="bg-slate-400">
+      <Box direction="row" className="bg-slate-400">
         Test
       </Box>
     </div>

@@ -1,6 +1,6 @@
 import { memo } from 'react'
-import css from './Box.module.css'
-import useJoin from 'utils/customHooks/useJoin'
+import styled from 'styled-components'
+import tw from 'twin.macro'
 
 export type BoxDirectionType = 'row' | 'row-reverse' | 'column' | 'column-reverse'
 export type BoxJustifyType = 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-evenly'
@@ -13,10 +13,7 @@ export interface BoxPropsInterface extends React.ComponentPropsWithRef<'div'> {
   align?: BoxAlignType
   wrap?: WrapPropsType
   position?: PositionType
-  maxWidth?: number
-  minWidth?: number
   zIndex?: number
-  className?: string
   children?: React.ReactNode
 }
 
@@ -26,33 +23,85 @@ const Box = ({
   justify,
   wrap,
   align,
-  maxWidth,
-  minWidth,
   position,
-  className = '',
   ...rest
-}: BoxPropsInterface) => {
-  const boxDirection = css[`direction__${direction}`]
-  const boxJustify = css[`justify__${justify}`]
-  const boxWrap = css[`wrap__${wrap}`]
-  const boxAlign = css[`wrap__${align}`]
-  const boxPosition = css[`position__${position}`]
+}: BoxPropsInterface) => (
+  <BoxContainer direction={direction} justify={justify} wrap={wrap} align={align} {...rest}>
+    {children}
+  </BoxContainer>
+)
 
-  const boxStyled = useJoin([
-    boxDirection,
-    boxJustify,
-    boxWrap,
-    boxAlign,
-    boxPosition,
-    maxWidth && `max-w-${maxWidth}px`,
-    minWidth && `min-w-${maxWidth}px`,
-    className,
-  ])
-  return (
-    <div className={`${boxStyled} `} {...rest}>
-      {children}
-    </div>
-  )
-}
+const BoxContainer = styled.div<BoxPropsInterface>`
+  ${({ direction }) => {
+    switch (direction) {
+      case 'row':
+        return tw`flex flex-row`
+      case 'row-reverse':
+        return tw`flex flex-row-reverse`
+      case 'column':
+        return tw`flex flex-col`
+      case 'column-reverse':
+        return tw`flex flex-col-reverse`
+      default:
+        return tw``
+    }
+  }}
+  ${({ justify }) => {
+    switch (justify) {
+      case 'flex-start':
+        return tw`justify-start`
+      case 'flex-end':
+        return tw`justify-end`
+      case 'center':
+        return tw`justify-center`
+      case 'space-between':
+        return tw`justify-between`
+      case 'space-evenly':
+        return tw`justify-evenly`
+      default:
+        return tw``
+    }
+  }}
+  ${({ align }) => {
+    switch (align) {
+      case 'start':
+        return tw`items-start`
+      case 'end':
+        return tw`items-end`
+      case 'center':
+        return tw`items-center`
+      case 'baseline':
+        return tw`items-baseline`
+      default:
+        return tw``
+    }
+  }}
+  ${({ wrap }) => {
+    switch (wrap) {
+      case 'wrap':
+        return tw`flex-wrap`
+      case 'nowrap':
+        return tw`flex-nowrap`
+      default:
+        return tw``
+    }
+  }}
+  ${({ position }) => {
+    switch (position) {
+      case 'relative':
+        return tw`relative`
+      case 'absolute':
+        return tw`absolute`
+      case 'fixed':
+        return tw`fixed`
+      case 'sticky':
+        return tw`sticky`
+      case 'static':
+        return tw`static`
+      default:
+        return tw``
+    }
+  }}
+`
 
 export default memo(Box)
