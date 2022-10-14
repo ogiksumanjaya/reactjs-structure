@@ -3,10 +3,18 @@ import React from 'react'
 import tw from 'twin.macro'
 import { Box, Button, TextField, Typography } from '@mui/material'
 import InputLabel from 'components/atoms/InputLabel'
+import { useForm, SubmitHandler } from 'react-hook-form'
+
+type InputsType = {
+  email: string
+  password: string
+}
 
 const Login = () => {
-  const handleSubmit = () => {
-    console.log('Ok')
+  const { register, handleSubmit } = useForm<InputsType>()
+
+  const handleLogin: SubmitHandler<InputsType> = (data) => {
+    console.log(data)
   }
 
   return (
@@ -14,7 +22,7 @@ const Login = () => {
       <Typography component="h1" variant="h5">
         Login
       </Typography>
-      <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+      <Box component="form" onSubmit={handleSubmit(handleLogin)} noValidate sx={{ mt: 1 }}>
         <InputLabel>Email Address</InputLabel>
         <TextField
           hiddenLabel
@@ -22,11 +30,11 @@ const Login = () => {
           required
           fullWidth
           id="email"
-          name="email"
           type="email"
           autoComplete="email"
           placeholder="Email Address"
           autoFocus
+          {...register('email')}
         />
         <InputLabel>Password</InputLabel>
         <TextField
@@ -34,11 +42,11 @@ const Login = () => {
           margin="normal"
           required
           fullWidth
-          name="password"
           type="password"
           id="password"
           placeholder="Password"
           autoComplete="current-password"
+          {...register('password')}
         />
         <Button type="submit" fullWidth variant="contained" size="large" sx={{ mt: 3, mb: 2 }}>
           Login
