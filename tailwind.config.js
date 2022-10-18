@@ -6,6 +6,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors:{
+        'purpleP1'  : '#0096FF',
+        'blueP1'  : '#5800FF',
+        'blueP2'  : '#00D7FF',
+        'blueP3'  : '#72FFFF',
+      }
     },
     screens: {
       '2xl': {'max': '1400px'},

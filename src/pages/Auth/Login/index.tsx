@@ -1,9 +1,10 @@
 /* eslint-disable no-console */
 import React from 'react'
 import tw from 'twin.macro'
-import { Box, Button, TextField, Typography } from '@mui/material'
+import { Box, Button, Typography } from '@mui/material'
 import InputLabel from 'components/atoms/InputLabel'
 import { useForm, SubmitHandler } from 'react-hook-form'
+import TextField from 'components/atoms/TextField'
 
 type InputsType = {
   email: string
