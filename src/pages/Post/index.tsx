@@ -1,24 +1,45 @@
-import { fetchAllPost } from 'redux/post/actions'
+/* eslint-disable no-console */
+import { useEffect, useMemo } from 'react'
+import { getPostList } from 'redux/post/actions'
 import { RootStateType } from 'redux/store'
 import { useAppDispatch, useAppSelector } from 'utils/customHooks/reduxHook'
+import { useApiData } from 'utils/customHooks/useApiData'
 
 const Post = () => {
   const dispatch = useAppDispatch()
-  const { isLoading, isError, data } = useAppSelector((state: RootStateType) => state.posts)
+  const { posts } = useAppSelector((state: RootStateType) => state)
 
   const handleGetAllPost = () => {
-    dispatch(fetchAllPost())
+    dispatch(getPostList())
   }
+
+  useEffect(() => {
+    handleGetAllPost()
+  }, [dispatch])
+
+  useApiData(
+    posts.status,
+    posts.data,
+    posts.error,
+    useMemo(
+      () => ({
+        onFulfilled(data) {
+          console.log(data)
+        },
+        onRejected(error) {
+          console.log(error)
+        },
+        onPending() {
+          console.log('pending')
+        },
+      }),
+      [],
+    ),
+  )
 
   return (
     <>
       <p>Post Page</p>
-      <button onClick={handleGetAllPost} className="bg-slate-500 text-white">
-        Get ALl Post
-      </button>
-      <br />
-      {isLoading ? <p>Loading...</p> : JSON.stringify(data)}
-      {isError && 'Terjadi kesalahan'}
     </>
   )
 }
