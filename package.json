@@ -44,7 +44,7 @@
   "repository": "git@github.com:delos-co/archetype-react-js.git",
   "license": "MIT",
   "lint-staged": {
-    "**/*.{js,jsx,ts,tsx}": [
+    "src/**/*.{js,jsx,ts,tsx}": [
       "yarn format",
       "yarn lint"
     ]
